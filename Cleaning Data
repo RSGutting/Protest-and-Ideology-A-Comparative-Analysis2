@@ -1,0 +1,115 @@
+#Data cleaning for Comparative Protest paper
+
+library(foreign)
+library(haven)
+setwd("C:/Users/rayne/Documents/Comparative Citizen Norms/Data")
+ESS7 <- read_dta("ESS7MDWe02.1_F1.dta")
+
+collect_drops<-function(x,drop_start,drop_stop,data){
+    #This function takes as inputs two column names in a data.frame and drops all variables between them inclusively
+    #x is an existing vector of dropped vars
+    #quick function - cannot be called on empty vectors
+  
+  temp<-c(grep(drop_start, colnames(data)):grep(drop_stop, colnames(data)) )
+  temp<-c(x,temp)
+  return(temp)
+}
+
+#drop_vars<-collect_drops(drop_vars,"","",ESS7) <- template for dropping vars, fill in variable names to get ranges to be dropped
+
+drop_vars<-NULL #create empty vector to be filled with captured column num's from below
+
+#country-level var's
+drop_vars<-collect_drops(drop_vars,"c_area_1990","c_tpopsz_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_fpopsz_1990","c_fpopsz_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_mpopsz_1990","c_mpopsz_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_pode_1990","c_pode_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_lbirth_2000","c_cnmigrat_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_grow_2000","c_cnmigratrt_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_growrt_2000","c_gdppc_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_gnipc_1990","c_gini_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_soexgdp_1980","c_soexgdp_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_soexgni_1980","c_soexgni_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_loun_ths_1999","c_loun_ths_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_loun_pc_une_1999","c_un1524_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_unall_1999","c_unall_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_uno25_1999","c_uno25_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_unra1524_1999","c_unra1524_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_unraall_1999","c_unraall_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_unrao25_1999","c_unrao25_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_ger_02_1999","c_ger_4_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_ger_5t8_1999","c_ger_5t8_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_ner_02_cp_1999","c_hditr_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_gii_2000","c_gii_2010",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_fhcl_1990","c_fhcl_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_fhpr_1990","c_fhpr_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_fhstanu_1990","c_fhstanu_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_statusindex_2006","c_statusindex_2008",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_democracystatus_2006","c_democracystatus_2008",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_marketeconomystatus_2006","c_assn_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_disap_1981","c_disap_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_dommov_1981","c_dommov_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_elecsd_1981","c_elecsd_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_empinx_1981","c_empinx_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_formov_1981","c_formov_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_injud_1981","c_injud_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_kill_1981","c_kill_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_physint_1981","c_physint_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_polpris_1981","c_polpris_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_relfre_1981","c_relfre_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_speech_1981","c_speech_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_tort_1981","c_tort_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_wecon_1981","c_wecon_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_wopol_1981","c_wopol_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_worker_1981","c_worker_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_wosoc_1981","c_wosoc_2004",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_indlib_1990","c_indlib_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_ruleoflaw_1990","c_ruleoflaw_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_public_1990","c_public_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_compet_1990","c_compet_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_mutucons_1990","c_mutucons_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_govcap_1990","c_govcap_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_transpar_1990","c_transpar_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_particip_1990","c_particip_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_repres_1990","c_repres_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_accountability_1996","c_accountability_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_corruption_1996","c_corruption_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_effectiveness_1996","c_effectiveness_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_law_1996","c_law_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_quality_1996","c_quality_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_stability_1996","c_stability_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_eu_1960","c_eu_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_govparty_1960","c_ticpi_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_crmtot_1993","c_immg_tot_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_emi_tot_1998","c_popfor_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_access_nationality_2007","c_infl_frgn_2009",ESS7)
+drop_vars<-collect_drops(drop_vars,"c_outfl_frgn_2000","reg7_vthft_2010",ESS7)
+#individual-level var's
+drop_vars<-collect_drops(drop_vars,"^rlgblg$","rlgdesi",ESS7)
+drop_vars<-collect_drops(drop_vars,"^etfruit$","\\bjbexena\\b",ESS7)
+# drop_vars<-collect_drops(drop_vars,"c_area_1990","c_area_2009",data=ESS7)
+
+ESSnew<-ESS7[-c(drop_vars)]
+
+#drop Israel
+table(ESSnew$cntry)
+NewDat <- ESSnew[ which(ESSnew$cntry!='IL'), ]
+
+#Data Coding
+
+library(car)
+library(base)
+library(dplyr)
+
+
+#generate dummy var for post-communist countries
+postcomcntry<-c('CZ', 'EE', 'HU', 'LT', 'PL', 'SI')
+NewDat<-mutate(NewDat, postcom = ifelse(cntry%in%postcomcntry, 1, 0))
+
+
+
+
+ESSnew$x<-recode(ESSnew$x,"1=7;2=6;3=5;4=4;5=3;6=2;7=1")
+
+
+
